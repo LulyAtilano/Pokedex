@@ -1,52 +1,55 @@
 $(document).ready(function(){
     $('.sidenav').sidenav();
-
+    jsonAllPokemons();
 });
 
 $('#search-button').click(function() {
   //console.log("se busca pokemon");
-
   var searchPokemon = $('#search-input').val();
-  ajaxPokemon(searchPokemon);  
+  //jsonAllPokemons(searchPokemon);  
 });
 
-function ajaxPokemon(pokemon) {
+function jsonAllPokemons() {
   $.ajax({
-    url: 'https://pokeapi.co/api/v2//region/{id or name}',
+    url: 'https://pokeapi.co/api/v2/pokedex/1',
     type: 'GET',
-    datatype: 'json',
-    data: {
-      api_key: ''
-    }
   })
   .done(function(response) {
-    console.log(response);
-    //printPokemons(response.data);
+    //console.log(response.pokemon_entries);
+    printPokemons(response.pokemon_entries);
   })
   .fail(function(){
     console.log("error");
   });
 };
 
-function printPokemons(data) {
-  let pokemon = "";
-
-  data.forEach(function(element) {
-    pokemon = element.name;
-    console.log(pokemon);
-  });
+function printPokemons(pokemons) {
+    pokemons.forEach(function(pokemon) {
+      let plantilla_pokemon = fillTemplate(pokemon.entry_number, pokemon.pokemon_species.name);
+      $('#section-pokemons').append(plantilla_pokemon);
+    });
 
   /* Guardar en el contenedor main  */
-  $('#section-pokemons').append(pokemon);
+  
 };
 
-/*let templateCard = 
-  `<div class="card col s4 l4">`+
-  `<div class="card-image waves-effect waves-block waves-light">
-      <img class="activator" src="#">
+function fillTemplate(number, name ){
+  let img = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/"+number+".png";
+  return `<div data-id="${number}" class="card col s4 l4">
+            <div class="card-image waves-effect waves-block waves-light">
+                <img class="activator" src="${img}">
+            </div>
+            <div class="card-content">
+                <span class="card-title activator grey-text text-darken-4"> ${name} <i class="material-icons right">more_vert</i></span>
+          </div>`
+}
+
+/*`<div data-id="${number}" class="card col s4 l4">
+  <div class="card-image waves-effect waves-block waves-light">
+      <img class="activator" src="${img}">
   </div>
   <div class="card-content">
-      <span class="card-title activator grey-text text-darken-4">Card Title<i class="material-icons right">more_vert</i></span>
+      <span class="card-title activator grey-text text-darken-4"> ${name} <i class="material-icons right">more_vert</i></span>
       <p><a href="#">This is a link</a></p>
   </div>
   <div class="card-reveal">
