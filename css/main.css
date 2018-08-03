@@ -1,0 +1,68 @@
+/* Font Families 
+font-family: 'Raleway', sans-serif;
+font-family: 'Ubuntu', sans-serif;
+font-family: 'Open Sans Condensed', sans-serif;
+*/
+
+body {
+    box-sizing: border-box;
+    font-family: 'Open Sans Condensed', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.row {
+    margin: 0;
+}
+
+/* ***** NAVBAR ***** */
+nav.nav-wrapper {
+    display: inline-flex;
+    font-family: 'Raleway', sans-serif;
+    letter-spacing: 4px;
+    padding: .8em;
+    min-height: 20%;
+}
+
+nav div.brand-logo {
+    align-self: center;
+}
+
+nav div.brand-logo img.img-logo {
+    margin-top: 19px;
+}
+
+.img-logo {
+    max-height: 1.2em;
+    max-width: 1.2em;
+    margin-top: .3em;
+}
+
+form {
+    display: inline-flex;
+}
+
+nav .input-field {
+    display: inline-flex;
+    border-bottom: 1px solid white;
+}
+
+header nav form button {
+    border-radius: 5px;
+    border: none;
+}
+
+/* ***** POKEMONS SECTION ***** */
+main {
+    height: 70%;
+    padding: 1em;
+}
+
+div.card {
+    min-height: 9em;
+}
+
+/* ***** FOOTER ***** */
+footer {
+    min-height: 10%;
+}
