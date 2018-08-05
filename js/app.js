@@ -3,10 +3,16 @@ $(document).ready(function(){
     jsonAllPokemons();
 });
 
+
 $('#search-button').click(function() {
-  //console.log("se busca pokemon");
-  var searchPokemon = $('#search-input').val();
-  //jsonAllPokemons(searchPokemon);  
+  let inputPokemon = $('#search-input').val();
+  //let searchCard = document.querySelector("div.inputPokemon");
+  let searchCard = document.getElementsByName('inputPokemon');
+
+  if (inputPokemon !== searchCard ){
+    $(searchCard).addClass('hidden');
+  }
+  $(searchCard).removeClass('hidden');
 });
 
 function jsonAllPokemons() {
@@ -25,36 +31,49 @@ function jsonAllPokemons() {
 
 function printPokemons(pokemons) {
     pokemons.forEach(function(pokemon) {
-      let plantilla_pokemon = fillTemplate(pokemon.entry_number, pokemon.pokemon_species.name);
-      $('#section-pokemons').append(plantilla_pokemon);
+      //console.log(pokemon);     
+      profilePokemon(pokemon.entry_number);
     });
-
-  /* Guardar en el contenedor main  */
-  
 };
 
-function fillTemplate(number, name ){
+function profilePokemon(number) {
+  $.ajax({
+    url: `https://pokeapi.co/api/v2/pokemon/${number}/`,
+    type: 'GET',
+    crossDomain: true,
+  })
+  .done(function(response) {
+    let ability = response.abilities[0].ability.name;
+    let type = response.types[0].type.name;
+    let weight = response.weight;
+    let height = response.height;
+    let name = response.name;
+       
+    let plantilla_pokemon = fillTemplate(number, name, ability, type, weight, height);
+      $('#section-pokemons').append(plantilla_pokemon);
+  })
+  .fail(function() {
+    //console.log("error cargando info de pokemons");
+  });
+};
+
+function fillTemplate(number, name, ability, type, weight, height) {
   let img = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/"+number+".png";
-  return `<div data-id="${number}" class="card col s4 l4">
-            <div class="card-image waves-effect waves-block waves-light">
+  return `<div data-id="${number}" class="card col s4 l3" name="${name}">
+            <div class="card-image waves-effect waves-block waves-light valign-wrapper">
                 <img class="activator" src="${img}">
             </div>
             <div class="card-content">
-                <span class="card-title activator grey-text text-darken-4"> ${name} <i class="material-icons right">more_vert</i></span>
+                <span class="card-title activator black-text text-darken-4 center-align"> ${name} <i class="material-icons right">more_vert</i></span>
+            </div>
+            <div class="card-reveal">
+              <span class="card-title red-text text-darken-4"> ${name} <i class="material-icons right">close</i></span>
+              <h6> Ability: </h6>
+              <li> ${ability} </li>
+              <h6> Type: </h6>
+              <li> ${type} </li>
+              <h6> Weight / Heigth </h6>
+              <li> ${weight} / ${height} </li>
+            </div>
           </div>`
-}
-
-/*`<div data-id="${number}" class="card col s4 l4">
-  <div class="card-image waves-effect waves-block waves-light">
-      <img class="activator" src="${img}">
-  </div>
-  <div class="card-content">
-      <span class="card-title activator grey-text text-darken-4"> ${name} <i class="material-icons right">more_vert</i></span>
-      <p><a href="#">This is a link</a></p>
-  </div>
-  <div class="card-reveal">
-      <span class="card-title grey-text text-darken-4">Card Title<i class="material-icons right">close</i></span>
-      <p>Here is some more information about this product that is only revealed once clicked on.</p>
-  </div>
-</div>`;
-console.log(templateCard);*/
+};

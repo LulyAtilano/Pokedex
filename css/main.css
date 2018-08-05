@@ -9,6 +9,7 @@ body {
     font-family: 'Open Sans Condensed', sans-serif;
     margin: 0;
     padding: 0;
+    min-height: 100vh;
 }
 
 .row {
@@ -21,21 +22,26 @@ nav.nav-wrapper {
     font-family: 'Raleway', sans-serif;
     letter-spacing: 4px;
     padding: .8em;
-    min-height: 20%;
+    height: 20vh;
 }
 
 nav div.brand-logo {
     align-self: center;
+    display: inline-flex;
 }
 
 nav div.brand-logo img.img-logo {
-    margin-top: 19px;
+    margin: 0 15px;
+}
+
+nav div.brand-logo img.img.activator {
+    margin: 0 auto;
 }
 
 .img-logo {
     max-height: 1.2em;
     max-width: 1.2em;
-    margin-top: .3em;
+    /*margin-top: .3em;*/
 }
 
 form {
@@ -44,25 +50,70 @@ form {
 
 nav .input-field {
     display: inline-flex;
+    height: 5em;
+    padding: 15px 0;
+}
+
+form div input#search-input {
     border-bottom: 1px solid white;
+    margin: 0;
 }
 
 header nav form button {
     border-radius: 5px;
     border: none;
+    height: 3.5em;
+    margin-bottom: 4px;
+}
+
+form#mobile-demo {
+    padding: 25px;
 }
 
 /* ***** POKEMONS SECTION ***** */
 main {
-    height: 70%;
+    height: auto;
     padding: 1em;
 }
 
 div.card {
-    min-height: 9em;
+    max-height: 300px;
+}
+
+#section-pokemons div div.card-content {
+    padding: 12px 0;
+}
+
+#section-pokemons div div > span.card-title {
+    font-weight: bolder;
+    letter-spacing: 2px;
+    margin: 0;
+}
+
+#section-pokemons div div img {
+    width: 200px;
+}
+
+/* ** POKEMON CARDS ** */
+#section-pokemons div div.card-reveal > span {
+    text-align: center;
+    font-weight: 400;
+}
+
+#section-pokemons div div.card-reveal > h6 {
+    font-family: 'Ubuntu', sans-serif;
+    font-weight: bolder;
+}
+
+#section-pokemons div div.card-reveal > li {
+    font-size: 1.3em;
+}
+
+.hidden {
+    display: none;
 }
 
 /* ***** FOOTER ***** */
 footer {
-    min-height: 10%;
+    min-height: 10vh;
 }
