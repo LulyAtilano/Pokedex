@@ -7,7 +7,7 @@ $(document).ready(function(){
 $('#search-button').click(function() {
   swal("Ooops it's not working right now!", "Come back later!", "warning");
   
-  let inputPokemon = $('#search-input').val();
+  /*let inputPokemon = $('#search-input').val();
   console.log(inputPokemon);
   
   //let searchCard = document.querySelector("div.card");
@@ -23,7 +23,7 @@ $('#search-button').click(function() {
     $(searchCard).css("color", "green");
     //swal("Houston we have a problem!", "Try typing again, please!", "warning");
   };
-
+  */
   $('#search-input').val('');
 
 });
@@ -99,7 +99,7 @@ function fillTemplate(number, name, ability, type, weight, height) {
             <div class="card-reveal">
               <span class="card-title red-text text-darken-4"> ${name} <i class="material-icons right">close</i></span>
               <h6> Ability: </h6>
-              <li> ${abilityPokemon} ${ability} </li>
+              <li> ${ability} </li>
               <h6> Type: </h6>
               <li> ${type} </li>
               <h6> Weight / Heigth </h6>
