@@ -17,12 +17,20 @@ body {
 }
 
 /* ***** NAVBAR ***** */
+header {
+    position: fixed;
+    width: 100%;
+    height: 20vh;
+    top: 0;
+    z-index: 99;
+}
+
 nav.nav-wrapper {
     display: inline-flex;
     font-family: 'Raleway', sans-serif;
+    height: 20vh;
     letter-spacing: 4px;
     padding: .8em;
-    height: 20vh;
 }
 
 nav div.brand-logo {
@@ -71,9 +79,13 @@ form#mobile-demo {
 }
 
 /* ***** POKEMONS SECTION ***** */
-main {
+main.row {
     height: auto;
+    min-height: 80vh;
     padding: 1em;
+    margin-top: 20.5vh;
+    margin-bottom: 7vh;
+    /*display: relative;*/
 }
 
 div.card {
@@ -92,6 +104,7 @@ div.card {
 
 #section-pokemons div div img {
     width: 200px;
+    position: inherit;
 }
 
 /* ** POKEMON CARDS ** */
@@ -115,5 +128,10 @@ div.card {
 
 /* ***** FOOTER ***** */
 footer {
-    min-height: 10vh;
+    bottom: 0;
+    min-height: 5vh;
+    padding: 20px 15px;
+    position: fixed;
+    width: 100%;
+    z-index: 99;
 }

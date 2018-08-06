@@ -6,13 +6,21 @@ $(document).ready(function(){
 
 $('#search-button').click(function() {
   let inputPokemon = $('#search-input').val();
-  //let searchCard = document.querySelector("div.inputPokemon");
-  let searchCard = document.getElementsByName('inputPokemon');
-
-  if (inputPokemon !== searchCard ){
-    $(searchCard).addClass('hidden');
+  console.log(inputPokemon);
+  
+  let searchCard = document.querySelector("div.card");
+  //let searchCard = document.getElementsByName('');
+  console.log(searchCard);
+  
+  if (inputPokemon != searchCard ){
+    //$(searchCard).addClass('hidden');
+    $(searchCard).css("color", "blue");
   }
-  $(searchCard).removeClass('hidden');
+  //$(searchCard).removeClass('hidden');
+   $(searchCard).css("color", "green");
+
+  $('#search-input').val('');
+
 });
 
 function jsonAllPokemons() {
@@ -51,6 +59,7 @@ function profilePokemon(number) {
        
     let plantilla_pokemon = fillTemplate(number, name, ability, type, weight, height);
       $('#section-pokemons').append(plantilla_pokemon);
+    searchPokemon(name);
   })
   .fail(function() {
     //console.log("error cargando info de pokemons");
@@ -77,3 +86,7 @@ function fillTemplate(number, name, ability, type, weight, height) {
             </div>
           </div>`
 };
+
+function searchPokemon(namePokemon) {
+  return namePokemon;
+}
