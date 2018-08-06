@@ -5,7 +5,9 @@ $(document).ready(function(){
 
 
 $('#search-button').click(function() {
-  let inputPokemon = $('#search-input').val();
+  swal("Ooops it's not working right now!", "Come back later!", "warning");
+  
+  /*let inputPokemon = $('#search-input').val();
   console.log(inputPokemon);
   
   let searchCard = document.querySelector("div.card");
@@ -15,9 +17,11 @@ $('#search-button').click(function() {
   if (inputPokemon != searchCard ){
     //$(searchCard).addClass('hidden');
     $(searchCard).css("color", "blue");
-  }
+  } else if {
   //$(searchCard).removeClass('hidden');
    $(searchCard).css("color", "green");
+   //swal("Houston we have a problem!", "Try typing again, please!", "warning");
+  }*/
 
   $('#search-input').val('');
 

@@ -104,6 +104,7 @@ div.card {
 
 #section-pokemons div div img {
     width: 200px;
+    min-width: 150px;
     position: inherit;
 }
 
