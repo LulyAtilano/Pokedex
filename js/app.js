@@ -56,8 +56,11 @@ function profilePokemon(number) {
     crossDomain: true,
   })
   .done(function(response) {
-    let ability = response.abilities[0].ability.name;
-    //console.log(ability);
+    //let ability = response.abilities[0].ability.name;
+    let abilitiesPokemon = [];
+    
+    let abilities = response.abilities;
+    abilities.forEach(item => abilitiesPokemon.push(`<li> ${item.ability.name} </li>`));
     //let abilityPokemon = "";
     //let abilities = response.abilities;
     //console.log(abilities);
@@ -78,9 +81,9 @@ function profilePokemon(number) {
     let height = response.height;
     let namePokemon = response.name;
        
-    let plantilla_pokemon = fillTemplate(number, namePokemon, ability, type, weight, height);
-      $('#section-pokemons').append(plantilla_pokemon);
-    //searchPokemon(namePokemon);
+    let plantilla_pokemon = fillTemplate(number, namePokemon, abilitiesPokemon.join(""), type, weight, height);
+    //console.log(abilitiesPokemon.join(""));  
+    $('#section-pokemons').append(plantilla_pokemon);
   })
   .fail(function() {
     //console.log("error cargando info de pokemons");
@@ -99,7 +102,9 @@ function fillTemplate(number, name, ability, type, weight, height) {
             <div class="card-reveal">
               <span class="card-title red-text text-darken-4"> ${name} <i class="material-icons right">close</i></span>
               <h6> Ability: </h6>
+              <ul>  
               <li> ${ability} </li>
+              </ul>
               <h6> Type: </h6>
               <li> ${type} </li>
               <h6> Weight / Heigth </h6>
